@@ -1,61 +1,68 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useMiniKit } from '@coinbase/onchainkit/minikit';
-import { NavigationBar } from '@/components/NavigationBar';
-import { InformationCard } from '@/components/InformationCard';
-import { EmergencyButton } from '@/components/EmergencyButton';
-import { StateSelector } from '@/components/InputWithLabel';
-import { StateGuideViewer } from '@/components/StateGuideViewer';
-import { TrustedContactsManager } from '@/components/TrustedContactsManager';
-import { Modal } from '@/components/Modal';
-import { Shield, FileText, Users, AlertTriangle, TrendingUp, BarChart3 } from 'lucide-react';
-import { StateGuide, TrustedContact, RecordedIncident } from '@/lib/types';
-import { US_STATES, PRICING } from '@/lib/constants';
-import { formatCurrency } from '@/lib/utils';
+import { useState, useEffect } from "react";
+import { useMiniKit } from "@coinbase/onchainkit/minikit";
+import { NavigationBar } from "@/components/NavigationBar";
+import { InformationCard } from "@/components/InformationCard";
+import { EmergencyButton } from "@/components/EmergencyButton";
+import { StateSelector } from "@/components/InputWithLabel";
+import { StateGuideViewer } from "@/components/StateGuideViewer";
+import { TrustedContactsManager } from "@/components/TrustedContactsManager";
+import { Modal } from "@/components/Modal";
+import {
+  Shield,
+  FileText,
+  Users,
+  AlertTriangle,
+  TrendingUp,
+  BarChart3,
+} from "lucide-react";
+import { StateGuide, TrustedContact, RecordedIncident } from "@/lib/types";
+import { US_STATES, PRICING } from "@/lib/constants";
+import { formatCurrency } from "@/lib/utils";
 
 export default function HomePage() {
   const { setFrameReady } = useMiniKit();
-  const [selectedState, setSelectedState] = useState<string>('');
+  const [selectedState, setSelectedState] = useState<string>("");
   const [selectedGuide, setSelectedGuide] = useState<StateGuide | null>(null);
-  const [language, setLanguage] = useState<'en' | 'es'>('en');
+  const [language, setLanguage] = useState<"en" | "es">("en");
   const [trustedContacts, setTrustedContacts] = useState<TrustedContact[]>([]);
   const [incidents, setIncidents] = useState<RecordedIncident[]>([]);
   const [isGuideModalOpen, setIsGuideModalOpen] = useState(false);
   const [isContactsModalOpen, setIsContactsModalOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     setFrameReady();
   }, [setFrameReady]);
 
   // Mock state guides data
-  const stateGuides: StateGuide[] = US_STATES.map(state => ({
+  const stateGuides: StateGuide[] = US_STATES.map((state) => ({
     guideId: `guide_${state.code}`,
     stateName: state.name,
     contentUrl: `/guides/${state.code}.json`,
-    language: 'en',
+    language: "en",
     price: PRICING.stateGuide,
     content: {
       whatToSay: [
         "I am exercising my right to remain silent.",
         "I do not consent to any searches.",
         "Am I free to leave?",
-        "I would like to speak to a lawyer."
+        "I would like to speak to a lawyer.",
       ],
       whatNotToSay: [
         "I didn't do anything wrong",
         "You can't do this to me",
-        "This is harassment"
+        "This is harassment",
       ],
       yourRights: [
         "You have the right to remain silent",
         "You have the right to refuse searches",
         "You have the right to ask if you're free to leave",
-        "You have the right to an attorney"
+        "You have the right to an attorney",
       ],
-      emergencyContacts: ["911", "1-800-LEGAL"]
-    }
+      emergencyContacts: ["911", "1-800-LEGAL"],
+    },
   }));
 
   const handleGuideSelect = (guide: StateGuide) => {
@@ -64,27 +71,26 @@ export default function HomePage() {
   };
 
   const handleIncidentStart = (incident: RecordedIncident) => {
-    console.log('Incident started:', incident);
+    console.log("Incident started:", incident);
   };
 
   const handleIncidentStop = (incident: RecordedIncident) => {
-    setIncidents(prev => [...prev, incident]);
-    console.log('Incident stopped:', incident);
+    setIncidents((prev) => [...prev, incident]);
+    console.log("Incident stopped:", incident);
   };
 
   const stats = {
     guidesAccessed: incidents.length + Math.floor(Math.random() * 50),
     incidentsRecorded: incidents.length,
-    contactsAlerted: incidents.filter(i => i.alertSent).length,
+    contactsAlerted: incidents.filter((i) => i.alertSent).length,
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-bg via-surface to-bg">
       <NavigationBar variant="transparent" />
-      
+
       <main className="pt-20 pb-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          
           {/* Hero Section */}
           <section id="home" className="text-center mb-16">
             <div className="max-w-4xl mx-auto">
@@ -93,15 +99,15 @@ export default function HomePage() {
                   <Shield className="h-12 w-12 text-white" />
                 </div>
               </div>
-              
+
               <h1 className="text-4xl md:text-6xl font-bold text-text-primary mb-6">
-                Will you see your{' '}
+                Will you see your{" "}
                 <span className="text-gradient">RightsGuard</span>
               </h1>
-              
+
               <p className="text-xl text-text-secondary mb-8 max-w-2xl mx-auto">
-                Our specialists can with ours guides to an protection 
-                people of the security, for your business.
+                Our specialists can with ours guides to an protection people of
+                the security, for your business.
               </p>
 
               {/* Quick Stats */}
@@ -146,8 +152,8 @@ export default function HomePage() {
                 State-Specific Legal Guides
               </h2>
               <p className="text-text-secondary max-w-2xl mx-auto">
-                Get instant access to your rights and what to say during police encounters, 
-                tailored to your state's specific laws.
+                Get instant access to your rights and what to say during police
+                encounters, tailored to your state&apos;s specific laws.
               </p>
             </div>
 
@@ -162,7 +168,11 @@ export default function HomePage() {
             {selectedState && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {stateGuides
-                  .filter(guide => guide.stateName === US_STATES.find(s => s.code === selectedState)?.name)
+                  .filter(
+                    (guide) =>
+                      guide.stateName ===
+                      US_STATES.find((s) => s.code === selectedState)?.name,
+                  )
                   .map((guide) => (
                     <InformationCard
                       key={guide.guideId}
@@ -179,14 +189,27 @@ export default function HomePage() {
               <div className="glass-card p-6">
                 <div className="flex items-center mb-4">
                   <FileText className="h-6 w-6 text-purple-400 mr-2" />
-                  <h3 className="text-lg font-semibold text-text-primary">One-page guide</h3>
+                  <h3 className="text-lg font-semibold text-text-primary">
+                    One-page guide
+                  </h3>
                 </div>
                 <div className="space-y-2 text-sm text-text-secondary">
-                  <p><strong>State specific user rights</strong></p>
+                  <p>
+                    <strong>State specific user rights</strong>
+                  </p>
                   <p className="text-xs text-purple-400">Following advice</p>
-                  <p>• Step in over dark of per habitats elite for water dispute, own most you rescue one user if your right high.</p>
-                  <p>• Why most time we omit be recording parts a status in a clear (before) ensure person Gals Mette a with four hands used on the right.</p>
-                  <p>• <strong>Recording your interactions.</strong></p>
+                  <p>
+                    • Step in over dark of per habitats elite for water dispute,
+                    own most you rescue one user if your right high.
+                  </p>
+                  <p>
+                    • Why most time we omit be recording parts a status in a
+                    clear (before) ensure person Gals Mette a with four hands
+                    used on the right.
+                  </p>
+                  <p>
+                    • <strong>Recording your interactions.</strong>
+                  </p>
                 </div>
               </div>
             </div>
@@ -199,7 +222,8 @@ export default function HomePage() {
                 Emergency Recording & Alerts
               </h2>
               <p className="text-text-secondary max-w-2xl mx-auto">
-                One-tap recording with automatic location tracking and emergency contact alerts.
+                One-tap recording with automatic location tracking and emergency
+                contact alerts.
               </p>
             </div>
 
@@ -236,7 +260,8 @@ export default function HomePage() {
                 Emergency Contacts
               </h2>
               <p className="text-text-secondary max-w-2xl mx-auto">
-                Set up trusted contacts who will be automatically notified during emergencies.
+                Set up trusted contacts who will be automatically notified
+                during emergencies.
               </p>
             </div>
 
@@ -272,11 +297,15 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <div className="glass-card p-6 text-center">
-                <h3 className="text-lg font-semibold text-text-primary mb-2">Per State Guide</h3>
+                <h3 className="text-lg font-semibold text-text-primary mb-2">
+                  Per State Guide
+                </h3>
                 <div className="text-3xl font-bold text-purple-400 mb-4">
                   {formatCurrency(PRICING.stateGuide)}
                 </div>
-                <p className="text-text-secondary mb-4">One-time purchase per state</p>
+                <p className="text-text-secondary mb-4">
+                  One-time purchase per state
+                </p>
                 <ul className="text-sm text-text-secondary space-y-2">
                   <li>• State-specific legal guidance</li>
                   <li>• Multilingual support</li>
@@ -288,7 +317,9 @@ export default function HomePage() {
                 <div className="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
                   Most Popular
                 </div>
-                <h3 className="text-lg font-semibold text-text-primary mb-2">Monthly Plan</h3>
+                <h3 className="text-lg font-semibold text-text-primary mb-2">
+                  Monthly Plan
+                </h3>
                 <div className="text-3xl font-bold text-purple-400 mb-4">
                   {formatCurrency(PRICING.monthlySubscription)}
                 </div>
@@ -302,7 +333,9 @@ export default function HomePage() {
               </div>
 
               <div className="glass-card p-6 text-center">
-                <h3 className="text-lg font-semibold text-text-primary mb-2">Yearly Plan</h3>
+                <h3 className="text-lg font-semibold text-text-primary mb-2">
+                  Yearly Plan
+                </h3>
                 <div className="text-3xl font-bold text-purple-400 mb-4">
                   {formatCurrency(PRICING.yearlySubscription)}
                 </div>

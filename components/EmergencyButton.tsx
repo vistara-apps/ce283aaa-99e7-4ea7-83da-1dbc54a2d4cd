@@ -1,30 +1,31 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { AlertTriangle, Square, Users } from 'lucide-react';
-import { getCurrentLocation, generateIncidentId } from '@/lib/utils';
-import { RecordedIncident } from '@/lib/types';
+import { useState, useEffect } from "react";
+import { AlertTriangle, Square, Users } from "lucide-react";
+import { getCurrentLocation, generateIncidentId } from "@/lib/utils";
+import { RecordedIncident } from "@/lib/types";
 
 interface EmergencyButtonProps {
-  variant?: 'primary' | 'secondary';
+  variant?: "primary" | "secondary";
   onIncidentStart?: (incident: RecordedIncident) => void;
   onIncidentStop?: (incident: RecordedIncident) => void;
 }
 
-export function EmergencyButton({ 
-  variant = 'primary', 
+export function EmergencyButton({
+  variant = "primary",
   onIncidentStart,
-  onIncidentStop 
+  onIncidentStop,
 }: EmergencyButtonProps) {
   const [isRecording, setIsRecording] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
-  const [currentIncident, setCurrentIncident] = useState<RecordedIncident | null>(null);
+  const [currentIncident, setCurrentIncident] =
+    useState<RecordedIncident | null>(null);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isRecording) {
       interval = setInterval(() => {
-        setRecordingTime(prev => prev + 1);
+        setRecordingTime((prev) => prev + 1);
       }, 1000);
     }
     return () => clearInterval(interval);
@@ -34,11 +35,11 @@ export function EmergencyButton({
     try {
       // Request location permission
       const location = await getCurrentLocation();
-      
+
       // Create incident record
       const incident: RecordedIncident = {
         incidentId: generateIncidentId(),
-        userId: 'current-user', // This would come from auth context
+        userId: "current-user", // This would come from auth context
         timestamp: new Date(),
         location,
         alertSent: false,
@@ -47,24 +48,23 @@ export function EmergencyButton({
       setCurrentIncident(incident);
       setIsRecording(true);
       setRecordingTime(0);
-      
+
       onIncidentStart?.(incident);
 
       // Request media permissions (audio/video)
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ 
-          audio: true, 
-          video: true 
+        const stream = await navigator.mediaDevices.getUserMedia({
+          audio: true,
+          video: true,
         });
         // Store stream reference for actual recording implementation
-        console.log('Media stream obtained:', stream);
+        console.log("Media stream obtained:", stream);
       } catch (mediaError) {
-        console.warn('Media access denied, continuing with location only');
+        console.warn("Media access denied, continuing with location only");
       }
-
     } catch (error) {
-      console.error('Failed to start recording:', error);
-      alert('Unable to access location. Please enable location services.');
+      console.error("Failed to start recording:", error);
+      alert("Unable to access location. Please enable location services.");
     }
   };
 
@@ -74,11 +74,11 @@ export function EmergencyButton({
         ...currentIncident,
         duration: recordingTime,
       };
-      
+
       setCurrentIncident(null);
       setIsRecording(false);
       setRecordingTime(0);
-      
+
       onIncidentStop?.(updatedIncident);
     }
   };
@@ -86,23 +86,26 @@ export function EmergencyButton({
   const alertContacts = () => {
     if (currentIncident) {
       // This would trigger the emergency alert system
-      console.log('Alerting emergency contacts for incident:', currentIncident.incidentId);
-      
+      console.log(
+        "Alerting emergency contacts for incident:",
+        currentIncident.incidentId,
+      );
+
       const updatedIncident = {
         ...currentIncident,
         alertSent: true,
       };
       setCurrentIncident(updatedIncident);
-      
+
       // Show confirmation
-      alert('Emergency contacts have been notified with your location.');
+      alert("Emergency contacts have been notified with your location.");
     }
   };
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
   if (isRecording) {
@@ -112,7 +115,9 @@ export function EmergencyButton({
         <div className="glass-card p-6 text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
-            <span className="text-lg font-semibold text-text-primary">Recording Active</span>
+            <span className="text-lg font-semibold text-text-primary">
+              Recording Active
+            </span>
           </div>
           <div className="text-3xl font-mono text-red-400 mb-4">
             {formatTime(recordingTime)}
@@ -131,7 +136,9 @@ export function EmergencyButton({
           >
             <Users className="h-5 w-5" />
             <span>
-              {currentIncident?.alertSent ? 'Contacts Alerted' : 'Alert Emergency Contacts'}
+              {currentIncident?.alertSent
+                ? "Contacts Alerted"
+                : "Alert Emergency Contacts"}
             </span>
           </button>
 
@@ -150,7 +157,9 @@ export function EmergencyButton({
   return (
     <button
       onClick={startRecording}
-      className={variant === 'primary' ? 'btn-emergency w-full' : 'btn-secondary w-full'}
+      className={
+        variant === "primary" ? "btn-emergency w-full" : "btn-secondary w-full"
+      }
     >
       <div className="flex items-center justify-center space-x-2">
         <AlertTriangle className="h-6 w-6" />

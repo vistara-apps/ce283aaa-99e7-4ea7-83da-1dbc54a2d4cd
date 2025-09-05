@@ -1,12 +1,116 @@
 {
-  "name": "RightsGuard",
-  "description": "RightsGuard is a Base Mini App built with Zara.",
-  "image": "https://dummyimage.com/1200x628/0a0b0d/ffffff.png&text=OG",
+  "name": "RightsGuard - Your Pocket Guide to Rights and Safety",
+  "short_name": "RightsGuard",
+  "description": "A mobile app providing one-page, mobile-optimized guides on user rights during police stops, multilingual scripts, and discreet recording capabilities.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0f23",
+  "theme_color": "#8b5cf6",
+  "orientation": "portrait-primary",
+  "categories": ["legal", "safety", "education", "utilities"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Emergency Recording",
+      "short_name": "Record",
+      "description": "Start emergency recording immediately",
+      "url": "/?action=record",
+      "icons": [
+        {
+          "src": "/icons/record-shortcut.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "State Guides",
+      "short_name": "Guides",
+      "description": "Access state-specific legal guides",
+      "url": "/?section=guides",
+      "icons": [
+        {
+          "src": "/icons/guides-shortcut.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Emergency Contacts",
+      "short_name": "Contacts",
+      "description": "Manage emergency contacts",
+      "url": "/?section=contacts",
+      "icons": [
+        {
+          "src": "/icons/contacts-shortcut.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "scope": "/",
+  "id": "rightsguard-base-miniapp",
   "external_url": "https://ce283aaa-99e7-4ea7-83da-1dbc54a2d4cd.vercel.app",
+  "image": "https://dummyimage.com/1200x628/0a0b0d/ffffff.png&text=RightsGuard",
   "properties": {
     "app": {
       "name": "RightsGuard",
-      "description": "RightsGuard is a Base Mini App built with Zara.",
+      "description": "Your pocket guide to rights and safety.",
       "url": "https://ce283aaa-99e7-4ea7-83da-1dbc54a2d4cd.vercel.app",
       "icon": "https://0co.to/images/zara-2.png"
     }

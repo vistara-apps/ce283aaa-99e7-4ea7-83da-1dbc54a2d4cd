@@ -10,7 +10,7 @@ export interface StateGuide {
   guideId: string;
   stateName: string;
   contentUrl: string;
-  language: 'en' | 'es';
+  language: "en" | "es";
   price: number;
   content: {
     whatToSay: string[];
@@ -49,14 +49,14 @@ export interface EmergencyAlert {
   incidentId: string;
   contactId: string;
   sentAt: Date;
-  status: 'sent' | 'delivered' | 'failed';
+  status: "sent" | "delivered" | "failed";
 }
 
 export interface PaymentIntent {
   intentId: string;
   userId: string;
   amount: number;
-  currency: 'USD' | 'USDC';
-  status: 'pending' | 'completed' | 'failed';
+  currency: "USD" | "USDC";
+  status: "pending" | "completed" | "failed";
   guideId?: string;
 }

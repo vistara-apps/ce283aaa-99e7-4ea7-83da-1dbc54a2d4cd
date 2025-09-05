@@ -1,17 +1,21 @@
-'use client';
+"use client";
 
-import { FileText, MapPin, Clock, AlertTriangle } from 'lucide-react';
-import { StateGuide, RecordedIncident } from '@/lib/types';
-import { formatDate, formatCurrency } from '@/lib/utils';
+import { FileText, MapPin, Clock, AlertTriangle } from "lucide-react";
+import { StateGuide, RecordedIncident } from "@/lib/types";
+import { formatDate, formatCurrency } from "@/lib/utils";
 
 interface InformationCardProps {
-  variant: 'guide' | 'incidentSummary';
+  variant: "guide" | "incidentSummary";
   data: StateGuide | RecordedIncident;
   onClick?: () => void;
 }
 
-export function InformationCard({ variant, data, onClick }: InformationCardProps) {
-  if (variant === 'guide') {
+export function InformationCard({
+  variant,
+  data,
+  onClick,
+}: InformationCardProps) {
+  if (variant === "guide") {
     const guide = data as StateGuide;
     return (
       <div className="guide-card" onClick={onClick}>
@@ -21,9 +25,11 @@ export function InformationCard({ variant, data, onClick }: InformationCardProps
               <FileText className="h-5 w-5 text-purple-400" />
             </div>
             <div>
-              <h3 className="font-semibold text-text-primary">{guide.stateName} Guide</h3>
+              <h3 className="font-semibold text-text-primary">
+                {guide.stateName} Guide
+              </h3>
               <p className="text-sm text-text-secondary">
-                {guide.language === 'en' ? 'English' : 'Español'}
+                {guide.language === "en" ? "English" : "Español"}
               </p>
             </div>
           </div>
@@ -37,7 +43,9 @@ export function InformationCard({ variant, data, onClick }: InformationCardProps
 
         <div className="space-y-3">
           <div>
-            <h4 className="text-sm font-medium text-text-primary mb-2">What You'll Learn:</h4>
+            <h4 className="text-sm font-medium text-text-primary mb-2">
+              What You&apos;ll Learn:
+            </h4>
             <ul className="space-y-1">
               <li className="text-sm text-text-secondary flex items-center">
                 <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2" />
@@ -73,12 +81,14 @@ export function InformationCard({ variant, data, onClick }: InformationCardProps
             </p>
           </div>
         </div>
-        <div className={`px-2 py-1 rounded-full text-xs font-medium ${
-          incident.alertSent 
-            ? 'bg-green-500/20 text-green-400' 
-            : 'bg-yellow-500/20 text-yellow-400'
-        }`}>
-          {incident.alertSent ? 'Alert Sent' : 'No Alert'}
+        <div
+          className={`px-2 py-1 rounded-full text-xs font-medium ${
+            incident.alertSent
+              ? "bg-green-500/20 text-green-400"
+              : "bg-yellow-500/20 text-yellow-400"
+          }`}
+        >
+          {incident.alertSent ? "Alert Sent" : "No Alert"}
         </div>
       </div>
 
@@ -89,11 +99,13 @@ export function InformationCard({ variant, data, onClick }: InformationCardProps
             <span>{incident.location.address}</span>
           </div>
         )}
-        
+
         {incident.duration && (
           <div className="flex items-center space-x-2 text-sm text-text-secondary">
             <Clock className="h-4 w-4" />
-            <span>{Math.floor(incident.duration / 60)}m {incident.duration % 60}s</span>
+            <span>
+              {Math.floor(incident.duration / 60)}m {incident.duration % 60}s
+            </span>
           </div>
         )}
 
