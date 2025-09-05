@@ -147,7 +147,7 @@ export default function HomePage() {
               </h2>
               <p className="text-text-secondary max-w-2xl mx-auto">
                 Get instant access to your rights and what to say during police encounters, 
-                tailored to your state's specific laws.
+                tailored to your state&apos;s specific laws.
               </p>
             </div>
 

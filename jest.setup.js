@@ -49,16 +49,16 @@ jest.mock('@coinbase/onchainkit/minikit', () => ({
   MiniKitProvider: ({ children }) => children,
 }))
 
-// Mock Stripe
-jest.mock('@stripe/stripe-js', () => ({
-  loadStripe: jest.fn(() => Promise.resolve(null)),
-}))
+// Mock Stripe (only if needed)
+// jest.mock('@stripe/stripe-js', () => ({
+//   loadStripe: jest.fn(() => Promise.resolve(null)),
+// }))
 
-jest.mock('@stripe/react-stripe-js', () => ({
-  Elements: ({ children }) => children,
-  useStripe: () => null,
-  useElements: () => null,
-}))
+// jest.mock('@stripe/react-stripe-js', () => ({
+//   Elements: ({ children }) => children,
+//   useStripe: () => null,
+//   useElements: () => null,
+// }))
 
 // Mock react-use hooks
 jest.mock('react-use', () => ({

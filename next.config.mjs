@@ -11,9 +11,7 @@ const nextConfig = {
   images: {
     domains: ['localhost', 'ipfs.io', 'gateway.pinata.cloud'],
   },
-  experimental: {
-    ppr: 'incremental',
-  },
+
   headers: async () => [
     {
       source: '/api/:path*',

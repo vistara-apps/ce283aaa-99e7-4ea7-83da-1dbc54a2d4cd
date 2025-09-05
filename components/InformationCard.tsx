@@ -37,7 +37,7 @@ export function InformationCard({ variant, data, onClick }: InformationCardProps
 
         <div className="space-y-3">
           <div>
-            <h4 className="text-sm font-medium text-text-primary mb-2">What You'll Learn:</h4>
+            <h4 className="text-sm font-medium text-text-primary mb-2">What You&apos;ll Learn:</h4>
             <ul className="space-y-1">
               <li className="text-sm text-text-secondary flex items-center">
                 <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2" />
