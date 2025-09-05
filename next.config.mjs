@@ -1,4 +1,4 @@
-import withPWA from 'next-pwa';
+import withPWA from "next-pwa";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -9,32 +9,39 @@ const nextConfig = {
     ignoreDuringBuilds: false,
   },
   images: {
-    domains: ['localhost', 'ipfs.io', 'gateway.pinata.cloud'],
+    domains: ["localhost", "ipfs.io", "gateway.pinata.cloud"],
   },
 
   headers: async () => [
     {
-      source: '/api/:path*',
+      source: "/api/:path*",
       headers: [
-        { key: 'Access-Control-Allow-Origin', value: '*' },
-        { key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT' },
-        { key: 'Access-Control-Allow-Headers', value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version' },
+        { key: "Access-Control-Allow-Origin", value: "*" },
+        {
+          key: "Access-Control-Allow-Methods",
+          value: "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+        },
+        {
+          key: "Access-Control-Allow-Headers",
+          value:
+            "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+        },
       ],
     },
   ],
 };
 
 const pwaConfig = withPWA({
-  dest: 'public',
+  dest: "public",
   register: true,
   skipWaiting: true,
-  disable: process.env.NODE_ENV === 'development',
+  disable: process.env.NODE_ENV === "development",
   runtimeCaching: [
     {
       urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-      handler: 'CacheFirst',
+      handler: "CacheFirst",
       options: {
-        cacheName: 'google-fonts',
+        cacheName: "google-fonts",
         expiration: {
           maxEntries: 4,
           maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
@@ -43,9 +50,9 @@ const pwaConfig = withPWA({
     },
     {
       urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
-      handler: 'CacheFirst',
+      handler: "CacheFirst",
       options: {
-        cacheName: 'google-fonts-static',
+        cacheName: "google-fonts-static",
         expiration: {
           maxEntries: 4,
           maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
@@ -54,9 +61,9 @@ const pwaConfig = withPWA({
     },
     {
       urlPattern: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
-      handler: 'StaleWhileRevalidate',
+      handler: "StaleWhileRevalidate",
       options: {
-        cacheName: 'static-image-assets',
+        cacheName: "static-image-assets",
         expiration: {
           maxEntries: 64,
           maxAgeSeconds: 24 * 60 * 60, // 24 hours
@@ -65,9 +72,9 @@ const pwaConfig = withPWA({
     },
     {
       urlPattern: /\.(?:js|css)$/i,
-      handler: 'StaleWhileRevalidate',
+      handler: "StaleWhileRevalidate",
       options: {
-        cacheName: 'static-resources',
+        cacheName: "static-resources",
         expiration: {
           maxEntries: 32,
           maxAgeSeconds: 24 * 60 * 60, // 24 hours
@@ -75,10 +82,10 @@ const pwaConfig = withPWA({
       },
     },
     {
-      urlPattern: ({ request }) => request.destination === 'document',
-      handler: 'NetworkFirst',
+      urlPattern: ({ request }) => request.destination === "document",
+      handler: "NetworkFirst",
       options: {
-        cacheName: 'documents',
+        cacheName: "documents",
         expiration: {
           maxEntries: 32,
           maxAgeSeconds: 24 * 60 * 60, // 24 hours
@@ -87,9 +94,9 @@ const pwaConfig = withPWA({
     },
     {
       urlPattern: /\/api\/guides/,
-      handler: 'StaleWhileRevalidate',
+      handler: "StaleWhileRevalidate",
       options: {
-        cacheName: 'api-guides',
+        cacheName: "api-guides",
         expiration: {
           maxEntries: 16,
           maxAgeSeconds: 60 * 60, // 1 hour

@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { MiniKitProvider } from '@coinbase/onchainkit/minikit';
-import { PrivyProvider } from '@privy-io/react-auth';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-import { Toaster } from 'react-hot-toast';
-import { base } from 'wagmi/chains';
-import { type ReactNode } from 'react';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MiniKitProvider } from "@coinbase/onchainkit/minikit";
+import { PrivyProvider } from "@privy-io/react-auth";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import { Toaster } from "react-hot-toast";
+import { base } from "wagmi/chains";
+import { type ReactNode } from "react";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,7 +18,9 @@ const queryClient = new QueryClient({
   },
 });
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
+);
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
@@ -26,20 +28,20 @@ export function Providers({ children }: { children: ReactNode }) {
       <PrivyProvider
         appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID!}
         config={{
-          loginMethods: ['wallet', 'email', 'sms'],
+          loginMethods: ["wallet", "email", "sms"],
           appearance: {
-            theme: 'dark',
-            accentColor: '#8B5CF6',
-            logo: '/logo.png',
+            theme: "dark",
+            accentColor: "#8B5CF6",
+            logo: "/logo.png",
           },
           embeddedWallets: {
-            createOnLogin: 'users-without-wallets',
+            createOnLogin: "users-without-wallets",
           },
         }}
       >
         <MiniKitProvider
           chain={base}
-          apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY || 'cdp_demo_key'}
+          apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY || "cdp_demo_key"}
         >
           <Elements stripe={stripePromise}>
             {children}
@@ -48,9 +50,9 @@ export function Providers({ children }: { children: ReactNode }) {
               toastOptions={{
                 duration: 4000,
                 style: {
-                  background: 'hsl(220, 20%, 15%)',
-                  color: 'hsl(0, 0%, 95%)',
-                  border: '1px solid hsl(220, 20%, 25%)',
+                  background: "hsl(220, 20%, 15%)",
+                  color: "hsl(0, 0%, 95%)",
+                  border: "1px solid hsl(220, 20%, 25%)",
                 },
               }}
             />

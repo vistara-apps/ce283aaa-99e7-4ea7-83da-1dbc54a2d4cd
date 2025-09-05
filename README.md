@@ -7,12 +7,14 @@ RightsGuard is a production-ready Next.js Base Mini App that provides one-page, 
 ## 🚀 Features
 
 ### Core Features
+
 - **State-Specific Legal Guides**: One-page, mobile-optimized summaries of user rights tailored to specific U.S. states
 - **Multilingual Scripts & Guidance**: Pre-written phrases and instructions in English and Spanish
 - **Incident Recording & Sharing**: One-tap discreet audio/video recording with location tracking
 - **Emergency Geo-Alerts**: Real-time location sharing with trusted contacts during emergencies
 
 ### Technical Features
+
 - **Base Chain Integration**: Built for Base network with wallet connectivity
 - **Payment Processing**: Stripe integration for guide purchases and subscriptions
 - **AI-Powered Content**: OpenAI integration for dynamic script generation
@@ -36,17 +38,20 @@ RightsGuard is a production-ready Next.js Base Mini App that provides one-page, 
 ## 📦 Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/vistara-apps/ce283aaa-99e7-4ea7-83da-1dbc54a2d4cd.git
    cd ce283aaa-99e7-4ea7-83da-1dbc54a2d4cd
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Environment Setup**
+
    ```bash
    cp .env.example .env.local
    ```
@@ -54,6 +59,7 @@ RightsGuard is a production-ready Next.js Base Mini App that provides one-page, 
 4. **Configure environment variables** (see [Environment Variables](#environment-variables))
 
 5. **Run the development server**
+
    ```bash
    npm run dev
    ```
@@ -66,6 +72,7 @@ RightsGuard is a production-ready Next.js Base Mini App that provides one-page, 
 Create a `.env.local` file with the following variables:
 
 ### Base Configuration
+
 ```env
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_APP_NAME=RightsGuard
@@ -73,6 +80,7 @@ NODE_ENV=development
 ```
 
 ### Supabase Configuration
+
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
@@ -80,17 +88,20 @@ SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 ```
 
 ### Privy Configuration
+
 ```env
 NEXT_PUBLIC_PRIVY_APP_ID=your_privy_app_id
 PRIVY_APP_SECRET=your_privy_app_secret
 ```
 
 ### OpenAI Configuration
+
 ```env
 OPENAI_API_KEY=your_openai_api_key
 ```
 
 ### Stripe Configuration
+
 ```env
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 STRIPE_SECRET_KEY=your_stripe_secret_key
@@ -98,6 +109,7 @@ STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 ```
 
 ### Additional Services
+
 ```env
 PINATA_API_KEY=your_pinata_api_key
 PINATA_SECRET_API_KEY=your_pinata_secret_key
@@ -200,6 +212,7 @@ CREATE POLICY "Users can update own data" ON users FOR UPDATE USING (auth.uid():
 ### Vercel Deployment
 
 1. **Connect to Vercel**
+
    ```bash
    npm i -g vercel
    vercel
@@ -215,6 +228,7 @@ CREATE POLICY "Users can update own data" ON users FOR UPDATE USING (auth.uid():
 ### Manual Deployment
 
 1. **Build the application**
+
    ```bash
    npm run build
    ```
@@ -257,29 +271,35 @@ npm run type-check
 ## 📊 API Documentation
 
 ### Authentication
+
 - `POST /api/auth/user` - Create user
 - `GET /api/auth/user` - Get user data
 - `PUT /api/auth/user` - Update user
 
 ### State Guides
+
 - `GET /api/guides` - Get state guides
 - `GET /api/guides/[id]` - Get specific guide
 
 ### Incidents
+
 - `POST /api/incidents` - Create incident
 - `GET /api/incidents` - Get user incidents
 
 ### Contacts
+
 - `POST /api/contacts` - Create trusted contact
 - `GET /api/contacts` - Get user contacts
 - `PUT /api/contacts` - Update contact
 - `DELETE /api/contacts` - Delete contact
 
 ### Payments
+
 - `POST /api/payments/create-intent` - Create payment intent
 - `GET /api/payments/create-intent` - Get payment status
 
 ### AI
+
 - `POST /api/ai/generate-script` - Generate custom scripts
 
 ## 🤝 Contributing
@@ -297,6 +317,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🆘 Support
 
 For support, please contact:
+
 - Email: support@rightsguard.app
 - Discord: [RightsGuard Community](https://discord.gg/rightsguard)
 - Documentation: [docs.rightsguard.app](https://docs.rightsguard.app)

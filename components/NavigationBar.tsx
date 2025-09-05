@@ -1,30 +1,32 @@
-'use client';
+"use client";
 
-import { Shield, Menu, X } from 'lucide-react';
-import { useState } from 'react';
-import { ConnectWallet, Wallet } from '@coinbase/onchainkit/wallet';
-import { Name } from '@coinbase/onchainkit/identity';
+import { Shield, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { ConnectWallet, Wallet } from "@coinbase/onchainkit/wallet";
+import { Name } from "@coinbase/onchainkit/identity";
 
 interface NavigationBarProps {
-  variant?: 'default' | 'transparent';
+  variant?: "default" | "transparent";
 }
 
-export function NavigationBar({ variant = 'default' }: NavigationBarProps) {
+export function NavigationBar({ variant = "default" }: NavigationBarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'Guides', href: '#guides' },
-    { label: 'Emergency', href: '#emergency' },
-    { label: 'Contacts', href: '#contacts' },
+    { label: "Home", href: "#home" },
+    { label: "Guides", href: "#guides" },
+    { label: "Emergency", href: "#emergency" },
+    { label: "Contacts", href: "#contacts" },
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 ${
-      variant === 'transparent' 
-        ? 'bg-bg/80 backdrop-blur-md' 
-        : 'bg-surface border-b border-gray-700'
-    }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 ${
+        variant === "transparent"
+          ? "bg-bg/80 backdrop-blur-md"
+          : "bg-surface border-b border-gray-700"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
